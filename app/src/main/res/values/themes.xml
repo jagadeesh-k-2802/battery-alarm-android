@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.BatteryAlarm" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+    </style>
+
+    <style name="Theme.BatteryAlarm.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
