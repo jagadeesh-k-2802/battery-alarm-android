@@ -1,5 +1,8 @@
 # Battery Alarm (Kotlin) 🔋⏰
 
+<img src="https://github.com/jagadeesh-k-2802/battery-alarm-android/assets/63912668/9e3f34ba-0be3-424e-b10b-f8ecd8f6c10f" width="750" />
+<br />
+
 Android Application that offers users a customizable alarm feature for monitoring their device's charging status.
 Users can set specific charging limits. The application ensures a user-friendly experience by allowing users to easily stop
 the alarm by unplugging their device.
