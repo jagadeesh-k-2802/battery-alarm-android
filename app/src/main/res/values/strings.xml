@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Battery Alarm</string>
+    <string name="special_use_case_explanation">Runs a battery monitor service to notify user about battery is charged at set limit</string>
 </resources>

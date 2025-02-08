@@ -1,20 +1,25 @@
 package com.jackapps.batteryalarm.services
 
+import android.Manifest
 import android.app.ActivityManager
+import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.os.BatteryManager
+import android.os.Build
 import android.os.IBinder
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
 import com.jackapps.batteryalarm.domain.PreferencesRepository
 import com.jackapps.batteryalarm.notifications.NOTIFICATION_SERVICE_ID
 import com.jackapps.batteryalarm.notifications.buildServiceNotification
 import com.jackapps.batteryalarm.presentation.alarm_screen.AlarmActivity
+import com.jackapps.batteryalarm.presentation.util.isAndroid
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -63,6 +68,7 @@ class BatteryAlarmService : Service() {
             sendBroadcast(Intent(ACTION_STARTED))
 
             preferencesRepository.preferencesFlow.collect { preferences ->
+                println("BatteryAlarmService: preferencesFlow.collect: ${preferences}")
                 this@BatteryAlarmService.batteryThreshold = preferences.batteryThreshold
                 val notification = buildServiceNotification(applicationContext, batteryThreshold)
 
@@ -71,13 +77,27 @@ class BatteryAlarmService : Service() {
                     this@BatteryAlarmService.isActive = true
                 }
 
-                val notificationManager = NotificationManagerCompat.from(applicationContext)
-                notificationManager.notify(NOTIFICATION_SERVICE_ID, notification)
+                postNotification(notification)
                 monitorBatteryStatus()
             }
         }
 
         return START_NOT_STICKY
+    }
+
+    private fun postNotification(notification: Notification) {
+        val notificationManager = NotificationManagerCompat.from(applicationContext)
+
+        if (isAndroid(Build.VERSION_CODES.TIRAMISU)) {
+            if (ActivityCompat.checkSelfPermission(
+                    applicationContext, Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationManager.notify(NOTIFICATION_SERVICE_ID, notification)
+            }
+        } else {
+            notificationManager.notify(NOTIFICATION_SERVICE_ID, notification)
+        }
     }
 
     private fun monitorBatteryStatus() {

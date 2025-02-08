@@ -3,9 +3,7 @@ package com.jackapps.batteryalarm.presentation.settings_screen.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ListItem
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun SliderSetting(
     text: String,
@@ -25,8 +22,8 @@ fun SliderSetting(
     onValueChangeFinished: () -> Unit
 ) {
     ListItem(
-        text = { Text(text = text) },
-        secondaryText = {
+        headlineContent = { Text(text = text) },
+        supportingContent = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Slider(
                     enabled = enabled,
@@ -42,6 +39,6 @@ fun SliderSetting(
                 Text(text = "${value.toInt()}%")
             }
         },
-        icon = { SettingsIcon(icon = icon) }
+        leadingContent = { SettingsIcon(icon = icon) }
     )
 }
