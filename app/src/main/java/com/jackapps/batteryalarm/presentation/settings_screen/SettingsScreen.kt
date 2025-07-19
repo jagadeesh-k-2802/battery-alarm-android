@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material.icons.filled.Vibration
 import androidx.compose.material3.ListItem
@@ -105,6 +106,14 @@ fun SettingsScreen(
                 icon = Icons.AutoMirrored.Filled.VolumeUp
             ) {
                 viewModel.setPreferences(PreferencesKeys.SHOULD_SOUND, !state.shouldSound)
+            }
+
+            CheckBoxSetting(
+                text = stringResource(R.string.text_start_at_boot),
+                checked = state.startAtBoot,
+                icon = Icons.Filled.RestartAlt
+            ) {
+                viewModel.setPreferences(PreferencesKeys.START_AT_BOOT, !state.startAtBoot)
             }
 
             ListItem(

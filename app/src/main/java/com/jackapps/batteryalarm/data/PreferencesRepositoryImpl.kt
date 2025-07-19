@@ -33,13 +33,15 @@ class PreferencesRepositoryImpl(
                 val shouldVibrate = preferences[PreferencesKeys.SHOULD_VIBRATE] ?: true
                 val shouldSound = preferences[PreferencesKeys.SHOULD_SOUND] ?: true
                 val volumeLevel = preferences[PreferencesKeys.VOLUME_LEVEL] ?: 100
+                val startAtBoot = preferences[PreferencesKeys.START_AT_BOOT] ?: false
 
                 AppPreferences(
                     Theme.valueOf(theme),
                     batteryThreshold,
                     shouldVibrate,
                     shouldSound,
-                    volumeLevel
+                    volumeLevel,
+                    startAtBoot
                 )
             }
 

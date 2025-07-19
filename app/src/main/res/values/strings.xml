@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- CORE -->
     <string name="app_name">Battery Alarm</string>
@@ -9,6 +10,8 @@
     <string name="notification_alarm_action_stop">Stop</string>
     <string name="notification_alarm_title">Battery Alarm Service Running</string>
     <string name="notification_alarm_text">Alarm will activate at %d%%</string>
+    <string name="notification_battery_alert_title">Battery Alert</string>
+    <string name="notification_battery_alert_text">Battery threshold reached!</string>
 
     <!-- DIALOG -->
     <string name="dialog_action_cancel">Cancel</string>
@@ -26,6 +29,7 @@
     <string name="text_battery_threshold">Battery Threshold</string>
     <string name="text_should_vibrate">Should Vibrate</string>
     <string name="text_should_sound">Should Sound</string>
+    <string name="text_start_at_boot">Start at Boot</string>
     <string name="text_volume_level">Volume Level</string>
     <string name="text_version">Version</string>
     <string name="text_developed_by">Developed By</string>

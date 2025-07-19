@@ -10,10 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BatteryChargingFull
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -35,8 +35,11 @@ fun AlarmScreen(
     val preferences by viewModel.preferences
     val height = LocalConfiguration.current.screenHeightDp.dp
 
-    Surface {
-        Box(modifier = Modifier.padding(layoutPadding)) {
+    Scaffold { contentPadding ->
+        Box(modifier = Modifier
+            .padding(contentPadding)
+            .padding(layoutPadding)
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
