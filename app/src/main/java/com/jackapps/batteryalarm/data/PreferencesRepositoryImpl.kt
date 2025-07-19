@@ -16,6 +16,7 @@ import java.io.IOException
 class PreferencesRepositoryImpl(
     private val dataStore: DataStore<Preferences>
 ) : PreferencesRepository {
+
     override val preferencesFlow: Flow<AppPreferences>
         get() = dataStore.data
             .catch { exception ->

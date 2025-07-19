@@ -27,9 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jackapps.batteryalarm.BuildConfig
+import com.jackapps.batteryalarm.R
 import com.jackapps.batteryalarm.model.PreferencesKeys
 import com.jackapps.batteryalarm.model.Theme
 import com.jackapps.batteryalarm.model.format
@@ -67,17 +69,17 @@ fun SettingsScreen(
             .padding(padding)
             .verticalScroll(scrollState)
         ) {
-            SettingSubTitle(text = "General")
+            SettingSubTitle(text = stringResource(R.string.text_general))
 
             ListItem(
-                headlineContent = { Text("App Theme") },
+                headlineContent = { Text(stringResource(R.string.text_app_theme)) },
                 supportingContent = { Text(state.theme.format()) },
                 modifier = Modifier.clickable { showThemeDialog = true },
                 leadingContent = { SettingsIcon(icon = Icons.Default.Palette) }
             )
 
             SliderSetting(
-                text = "Battery Threshold",
+                text = stringResource(R.string.text_battery_threshold),
                 value = batteryThreshold,
                 onValueChange = { value -> batteryThreshold = value },
                 icon = Icons.Default.BatteryChargingFull,
@@ -90,7 +92,7 @@ fun SettingsScreen(
             )
 
             CheckBoxSetting(
-                text = "Should Vibrate",
+                text = stringResource(R.string.text_should_vibrate),
                 checked = state.shouldVibrate,
                 icon = Icons.Default.Vibration
             ) {
@@ -98,7 +100,7 @@ fun SettingsScreen(
             }
 
             CheckBoxSetting(
-                text = "Should Sound",
+                text = stringResource(R.string.text_should_sound),
                 checked = state.shouldSound,
                 icon = Icons.AutoMirrored.Filled.VolumeUp
             ) {
@@ -106,7 +108,7 @@ fun SettingsScreen(
             }
 
             ListItem(
-                headlineContent = { Text("Notification Settings") },
+                headlineContent = { Text(stringResource(R.string.text_notification_settings)) },
                 modifier = Modifier.clickable {
                     Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
                         putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
@@ -118,7 +120,7 @@ fun SettingsScreen(
             )
 
             SliderSetting(
-                text = "Volume Level",
+                text = stringResource(R.string.text_volume_level),
                 value = volumeLevel,
                 enabled = state.shouldSound,
                 onValueChange = { value -> volumeLevel = value },
@@ -131,18 +133,18 @@ fun SettingsScreen(
                 }
             )
 
-            SettingSubTitle(text = "About")
+            SettingSubTitle(text = stringResource(R.string.text_about))
 
             ListItem(
-                headlineContent = { Text("Version") },
+                headlineContent = { Text(stringResource(R.string.text_version)) },
                 supportingContent = { Text(BuildConfig.VERSION_NAME) },
                 modifier = Modifier.clickable { },
                 leadingContent = { SettingsIcon(icon = Icons.Default.Tag) }
             )
 
             ListItem(
-                headlineContent = { Text("Developed By") },
-                supportingContent = { Text("Jagadeesh") },
+                headlineContent = { Text(stringResource(R.string.text_developed_by)) },
+                supportingContent = { Text(stringResource(R.string.text_developer_name)) },
                 modifier = Modifier.clickable { },
                 leadingContent = { SettingsIcon(icon = Icons.Default.Build) }
             )
@@ -151,7 +153,7 @@ fun SettingsScreen(
 
     if (showThemeDialog) {
         DialogWithOptions(
-            title = "Select Theme",
+            title = stringResource(R.string.text_select_theme),
             options = Theme.values().toList().map { it.format() },
             selectedIndex = state.theme.ordinal,
             onSelect = { index ->

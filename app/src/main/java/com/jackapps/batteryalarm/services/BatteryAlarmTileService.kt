@@ -32,7 +32,6 @@ class BatteryAlarmTileService : TileService() {
         val isServiceRunning = BatteryAlarmService.isServiceRunning(applicationContext)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            // Don't know why but using runBlocking updates it correctly
             runBlocking {
                 val preferences = preferencesRepository.preferencesFlow.first()
                 tile.subtitle = if (isServiceRunning) "${preferences.batteryThreshold}%" else ""

@@ -26,12 +26,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
+import com.jackapps.batteryalarm.R
 import com.jackapps.batteryalarm.presentation.components.AppBar
 import com.jackapps.batteryalarm.presentation.theme.layoutPadding
 import com.jackapps.batteryalarm.presentation.util.Navigator.navigate
@@ -49,12 +51,11 @@ fun HomeScreen(
     val batteryThreshold = state.batteryThreshold
     val height = LocalConfiguration.current.screenHeightDp.dp
 
-    val notificationPermissionState =
-        if (isAndroid(Build.VERSION_CODES.TIRAMISU)) {
-            rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            null
-        }
+    val notificationPermissionState = if (isAndroid(Build.VERSION_CODES.TIRAMISU)) {
+        rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
+    } else {
+        null
+    }
 
     LaunchedEffect(Unit) {
         notificationPermissionState?.launchPermissionRequest()
@@ -64,12 +65,18 @@ fun HomeScreen(
         topBar = {
             AppBar(title = Screens.Home.title) {
                 IconButton(onClick = { activity.navigate(Screens.Settings) }) {
-                    Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings")
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = stringResource(R.string.accessibility_settings)
+                    )
                 }
             }
         }
-    ) {
-        Box(modifier = Modifier.padding(layoutPadding)) {
+    ) { contentPadding ->
+        Box(modifier = Modifier
+            .padding(contentPadding)
+            .padding(layoutPadding)
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
@@ -78,16 +85,23 @@ fun HomeScreen(
 
                 Box(modifier = Modifier.size(180.dp)) {
                     Icon(
-                        imageVector = if (isServiceRunning)
-                            Icons.Default.NotificationsActive else Icons.Default.NotificationsOff,
-                        contentDescription = "Service not running.",
+                        imageVector = if (isServiceRunning) {
+                            Icons.Default.NotificationsActive
+                        } else {
+                            Icons.Default.NotificationsOff
+                        },
+                        contentDescription = stringResource(R.string.accessibility_service_not_running),
                         modifier = Modifier.fillMaxSize()
                     )
                 }
 
                 Text(
-                    text = if (isServiceRunning) "Alarm will activate at $batteryThreshold%"
-                    else "Alarm Disabled",
+                    text = if (isServiceRunning) {
+                        stringResource(R.string.text_alarm_activate_at, batteryThreshold)
+                    }
+                    else {
+                        stringResource(R.string.text_alarm_disabled)
+                    },
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(vertical = 12.dp),
                     fontSize = 20.sp
@@ -107,7 +121,11 @@ fun HomeScreen(
                 )
 
                 Text(
-                    text = "${if (isServiceRunning) "Disable" else "Enable"} Service".uppercase()
+                    text = if (isServiceRunning) {
+                        stringResource(R.string.text_disable_service)
+                    } else {
+                        stringResource(R.string.text_enable_service)
+                    }
                 )
             }
         }
