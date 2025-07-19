@@ -39,5 +39,5 @@
     <string name="text_battery_alarm">Batterij Alarm</string>
     <string name="text_unplug_dismiss">Koppel los of tik op Sluiten</string>
     <string name="text_charged_to">Geladen tot %d%%</string>
-    <string name="text_dismiss">Afwijzen</string>
+    <string name="text_dismiss">Sluiten</string>
 </resources>
