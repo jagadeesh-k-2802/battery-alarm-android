@@ -9,6 +9,8 @@
     <string name="notification_alarm_action_stop">Stop</string>
     <string name="notification_alarm_title">Batterij alarm service loopt</string>
     <string name="notification_alarm_text">Alarm wordt geactiveerd op %d%%</string>
+    <string name="notification_battery_alert_title">Batterijwaarschuwing</string>
+    <string name="notification_battery_alert_text">Batterijdrempel bereikt!</string>
 
     <!-- DIALOG -->
     <string name="dialog_action_cancel">Annuleren</string>
