@@ -10,4 +10,5 @@ object PreferencesKeys {
     val SHOULD_VIBRATE = booleanPreferencesKey("should_vibrate")
     val SHOULD_SOUND = booleanPreferencesKey("should_sound")
     val VOLUME_LEVEL = intPreferencesKey("volume_level")
+    val START_AT_BOOT = booleanPreferencesKey("start_at_boot")
 }

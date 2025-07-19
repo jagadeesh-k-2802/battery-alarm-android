@@ -5,5 +5,6 @@ data class AppPreferences(
     val batteryThreshold: Int = 95,
     val shouldVibrate: Boolean = true,
     val shouldSound: Boolean = true,
-    val volumeLevel: Int = 100
+    val volumeLevel: Int = 100,
+    val startAtBoot: Boolean = false,
 )

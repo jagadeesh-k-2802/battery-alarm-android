@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.os.BatteryManager
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
@@ -21,7 +22,7 @@ import com.jackapps.batteryalarm.presentation.alarm_screen.AlarmActivity
 import com.jackapps.batteryalarm.presentation.util.isAndroid
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import java.util.logging.Logger
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -39,6 +40,7 @@ class BatteryAlarmService : Service() {
         const val TAG = "BatteryAlarmService"
         const val ACTION_STARTED = "action.service_started"
         const val ACTION_STOPPED = "action.service_stopped"
+        const val IS_FROM_BOOT = "is_from_boot"
         const val DELAY = 10 * 1000L
 
         fun toggleService(context: Context) {
@@ -67,12 +69,18 @@ class BatteryAlarmService : Service() {
 
     override fun onBind(intent: Intent): IBinder? = null
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         job.launch {
+            if (intent.getBooleanExtra(IS_FROM_BOOT, false)) {
+                if (!preferencesRepository.preferencesFlow.first().startAtBoot) {
+                    return@launch
+                }
+            }
+
             sendBroadcast(Intent(ACTION_STARTED))
 
             preferencesRepository.preferencesFlow.collect { preferences ->
-                Logger.getLogger(TAG).info("preferencesFlow.collect: $preferences")
+                Log.d(TAG, "preferencesFlow.collect: $preferences")
                 this@BatteryAlarmService.batteryThreshold = preferences.batteryThreshold
                 val notification = buildServiceNotification(applicationContext, batteryThreshold)
 

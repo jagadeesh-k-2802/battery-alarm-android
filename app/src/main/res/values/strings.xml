@@ -26,6 +26,7 @@
     <string name="text_battery_threshold">Battery Threshold</string>
     <string name="text_should_vibrate">Should Vibrate</string>
     <string name="text_should_sound">Should Sound</string>
+    <string name="text_start_at_boot">Start at Boot</string>
     <string name="text_volume_level">Volume Level</string>
     <string name="text_version">Version</string>
     <string name="text_developed_by">Developed By</string>

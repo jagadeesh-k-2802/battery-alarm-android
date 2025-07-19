@@ -10,7 +10,8 @@ import com.jackapps.batteryalarm.services.BatteryAlarmService
  * Receiver fired when dismiss action is clicked on notification
  */
 class DismissBroadcastReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent?) {
+
+    override fun onReceive(context: Context, intent: Intent) {
         context.stopService(Intent(context, BatteryAlarmService::class.java))
     }
 }
