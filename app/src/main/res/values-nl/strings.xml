@@ -24,8 +24,8 @@
     <string name="text_about">Over</string>
     <string name="text_app_theme">App-thema</string>
     <string name="text_battery_threshold">Batterijdrempel</string>
-    <string name="text_should_vibrate">Zou moeten trillen</string>
-    <string name="text_should_sound">Zou moeten klinken</string>
+    <string name="text_should_vibrate">Trillen</string>
+    <string name="text_should_sound">Geluid</string>
     <string name="text_volume_level">Volumeniveau</string>
     <string name="text_version">Versie</string>
     <string name="text_developed_by">Ontwikkeld door</string>
