@@ -1,0 +1,43 @@
+<resources>
+    <!-- CORE -->
+    <string name="app_name">Batterij Alarm</string>
+    <string name="special_use_case_explanation">Voert een accubewakingsservice uit om de gebruiker te waarschuwen als de accu de ingestelde limiet heeft bereikt</string>
+
+    <!-- NOTIFICATION -->
+    <string name="notification_alarm_channel_name">Batterij Alarm Service</string>
+    <string name="notification_alarm_channel_desc">Het meldingskanaal voor de batterijalarmservice</string>
+    <string name="notification_alarm_action_stop">Stop</string>
+    <string name="notification_alarm_title">Batterij alarm service loopt</string>
+    <string name="notification_alarm_text">Alarm wordt geactiveerd op %d%%</string>
+
+    <!-- DIALOG -->
+    <string name="dialog_action_cancel">Annuleren</string>
+
+    <!-- ACCESSIBILITY -->
+    <string name="accessibility_settings">Instellingen</string>
+    <string name="accessibility_service_not_running">Service is niet actief.</string>
+    <string name="accessibility_go_back">Ga terug</string>
+
+    <!-- TEXT -->
+    <string name="text_general">Algemeen</string>
+    <string name="text_notification_settings">Meldingsinstellingen</string>
+    <string name="text_about">Over</string>
+    <string name="text_app_theme">App-thema</string>
+    <string name="text_battery_threshold">Batterijdrempel</string>
+    <string name="text_should_vibrate">Trillen</string>
+    <string name="text_should_sound">Geluid</string>
+    <string name="text_volume_level">Volumeniveau</string>
+    <string name="text_version">Versie</string>
+    <string name="text_developed_by">Ontwikkeld door</string>
+    <string name="text_developer_name">Jagadeesh</string>
+    <string name="text_select_theme">Selecteer thema</string>
+    <string name="text_percentage">%d%%</string>
+    <string name="text_alarm_activate_at">Alarm wordt geactiveerd op %d%%</string>
+    <string name="text_alarm_disabled">Alarm uitgeschakeld</string>
+    <string name="text_enable_service">Service inschakelen</string>
+    <string name="text_disable_service">Service uitschakelen</string>
+    <string name="text_battery_alarm">Batterij Alarm</string>
+    <string name="text_unplug_dismiss">Koppel los of tik op Sluiten</string>
+    <string name="text_charged_to">Geladen tot %d%%</string>
+    <string name="text_dismiss">Sluiten</string>
+</resources>
