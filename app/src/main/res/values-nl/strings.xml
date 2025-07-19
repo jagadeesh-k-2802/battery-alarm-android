@@ -1,10 +1,10 @@
 <resources>
     <!-- CORE -->
-    <string name="app_name">Battery Alarm</string>
+    <string name="app_name">Batterij Alarm</string>
     <string name="special_use_case_explanation">Voert een accubewakingsservice uit om de gebruiker te waarschuwen als de accu de ingestelde limiet heeft bereikt</string>
 
     <!-- NOTIFICATION -->
-    <string name="notification_alarm_channel_name">Battery Alarm Service</string>
+    <string name="notification_alarm_channel_name">Batterij Alarm Service</string>
     <string name="notification_alarm_channel_desc">Het meldingskanaal voor de batterijalarmservice</string>
     <string name="notification_alarm_action_stop">Stop</string>
     <string name="notification_alarm_title">Batterij alarm service loopt</string>
