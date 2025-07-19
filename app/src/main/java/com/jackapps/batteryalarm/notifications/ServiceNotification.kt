@@ -15,6 +15,7 @@ import com.jackapps.batteryalarm.receivers.DismissBroadcastReceiver
 
 const val NOTIFICATION_SERVICE_ID = 1
 const val CHANNEL_SERVICE_ID = "foreground_service"
+const val CHANNEL_NAME = "Foreground Service"
 
 fun buildServiceNotification(
     context: Context,
@@ -22,12 +23,12 @@ fun buildServiceNotification(
 ): Notification {
     val channel = NotificationChannel(
         CHANNEL_SERVICE_ID,
-        "Foreground Service",
+        CHANNEL_NAME,
         NotificationManager.IMPORTANCE_LOW
     )
 
-    channel.name = "Battery Alarm Service"
-    channel.description = "The notification channel for the battery alarm service"
+    channel.name = context.getString(R.string.notification_alarm_channel_name)
+    channel.description = context.getString(R.string.notification_alarm_channel_desc)
     NotificationManagerCompat.from(context).createNotificationChannel(channel)
 
     val mainActivityIntent = PendingIntent.getActivity(
@@ -46,13 +47,13 @@ fun buildServiceNotification(
 
     val stopAction = Notification.Action.Builder(
         Icon.createWithResource(context, R.drawable.ic_cancel),
-        "Stop",
+        context.getString(R.string.notification_alarm_action_stop),
         stopPendingIntent
     )
 
     return Notification.Builder(context, CHANNEL_SERVICE_ID)
-        .setContentTitle("Battery Alarm Service Running")
-        .setContentText("Alarm will activate at $batteryThreshold%")
+        .setContentTitle(context.getString(R.string.notification_alarm_title))
+        .setContentText(context.getString(R.string.notification_alarm_text, batteryThreshold))
         .setContentIntent(mainActivityIntent)
         .setCategory(NotificationCompat.CATEGORY_PROGRESS)
         .setShowWhen(true)

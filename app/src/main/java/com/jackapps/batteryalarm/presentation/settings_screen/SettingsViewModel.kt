@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.jackapps.batteryalarm.domain.PreferencesRepository
 import com.jackapps.batteryalarm.model.AppPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

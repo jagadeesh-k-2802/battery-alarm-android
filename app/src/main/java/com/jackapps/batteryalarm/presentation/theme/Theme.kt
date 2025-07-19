@@ -38,9 +38,11 @@ fun BatteryAlarmTheme(
         Theme.LIGHT -> {
             if (dynamicColor) dynamicLightColorScheme(context) else LightColorScheme
         }
+
         Theme.DARK -> {
             if (dynamicColor) dynamicDarkColorScheme(context) else DarkColorScheme
         }
+
         Theme.SYSTEM_DEFAULT -> {
             if (darkTheme) {
                 if (dynamicColor) dynamicDarkColorScheme(context) else DarkColorScheme

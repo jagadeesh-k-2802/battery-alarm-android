@@ -1,6 +1,13 @@
 package com.jackapps.batteryalarm.presentation.alarm_screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -12,10 +19,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jackapps.batteryalarm.R
 import com.jackapps.batteryalarm.presentation.theme.layoutPadding
 
 @Composable
@@ -35,14 +44,14 @@ fun AlarmScreen(
                 Spacer(modifier = Modifier.height(height / 10))
 
                 Text(
-                    text = "Battery Alarm",
+                    text = stringResource(R.string.text_battery_alarm),
                     fontSize = 30.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 Text(
-                    text = "Charged to ${preferences.batteryThreshold}%",
+                    text = stringResource(R.string.text_charged_to, preferences.batteryThreshold),
                     fontSize = 20.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
@@ -61,7 +70,7 @@ fun AlarmScreen(
                 }
 
                 Text(
-                    text = "Unplug, or tap Dismiss",
+                    text = stringResource(R.string.text_unplug_dismiss),
                     fontSize = 22.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
@@ -74,7 +83,7 @@ fun AlarmScreen(
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
             ) {
-                Text(text = "Dismiss".uppercase())
+                Text(text = stringResource(R.string.text_dismiss))
             }
         }
     }

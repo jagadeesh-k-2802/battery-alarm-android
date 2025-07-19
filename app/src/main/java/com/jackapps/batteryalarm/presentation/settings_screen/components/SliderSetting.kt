@@ -10,7 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jackapps.batteryalarm.R
 
 @Composable
 fun SliderSetting(
@@ -36,7 +38,7 @@ fun SliderSetting(
 
                 Spacer(Modifier.width(4.dp))
 
-                Text(text = "${value.toInt()}%")
+                Text(text = stringResource(R.string.text_percentage, value.toInt()))
             }
         },
         leadingContent = { SettingsIcon(icon = icon) }

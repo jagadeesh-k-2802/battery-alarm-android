@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.os.BatteryManager
 import android.os.Build
 import android.os.IBinder
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
 import com.jackapps.batteryalarm.domain.PreferencesRepository
@@ -20,11 +21,13 @@ import com.jackapps.batteryalarm.presentation.alarm_screen.AlarmActivity
 import com.jackapps.batteryalarm.presentation.util.isAndroid
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import java.util.logging.Logger
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class BatteryAlarmService : Service() {
+
     private val job = CoroutineScope(Dispatchers.Default)
     private var isActive = false
     private var batteryThreshold by Delegates.notNull<Int>()
@@ -33,6 +36,7 @@ class BatteryAlarmService : Service() {
     lateinit var preferencesRepository: PreferencesRepository
 
     companion object {
+        const val TAG = "BatteryAlarmService"
         const val ACTION_STARTED = "action.service_started"
         const val ACTION_STOPPED = "action.service_stopped"
         const val DELAY = 10 * 1000L
@@ -68,7 +72,7 @@ class BatteryAlarmService : Service() {
             sendBroadcast(Intent(ACTION_STARTED))
 
             preferencesRepository.preferencesFlow.collect { preferences ->
-                println("BatteryAlarmService: preferencesFlow.collect: ${preferences}")
+                Logger.getLogger(TAG).info("preferencesFlow.collect: $preferences")
                 this@BatteryAlarmService.batteryThreshold = preferences.batteryThreshold
                 val notification = buildServiceNotification(applicationContext, batteryThreshold)
 
@@ -89,15 +93,20 @@ class BatteryAlarmService : Service() {
         val notificationManager = NotificationManagerCompat.from(applicationContext)
 
         if (isAndroid(Build.VERSION_CODES.TIRAMISU)) {
-            if (ActivityCompat.checkSelfPermission(
-                    applicationContext, Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (checkNotificationPermission()) {
                 notificationManager.notify(NOTIFICATION_SERVICE_ID, notification)
             }
         } else {
             notificationManager.notify(NOTIFICATION_SERVICE_ID, notification)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun checkNotificationPermission(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            applicationContext,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun monitorBatteryStatus() {

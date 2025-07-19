@@ -21,6 +21,7 @@ import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class AlarmActivity : ComponentActivity() {
+
     private lateinit var audioManager: AudioManager
     private lateinit var vibrator: Vibrator
     private lateinit var mediaPlayer: MediaPlayer
@@ -91,7 +92,7 @@ class AlarmActivity : ComponentActivity() {
             setTurnScreenOn(true)
         }
 
-        with(getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager) {
+        with(getSystemService(KEYGUARD_SERVICE) as KeyguardManager) {
             requestDismissKeyguard(this@AlarmActivity, null)
         }
     }
