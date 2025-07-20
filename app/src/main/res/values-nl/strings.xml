@@ -28,6 +28,7 @@
     <string name="text_battery_threshold">Batterijdrempel</string>
     <string name="text_should_vibrate">Trillen</string>
     <string name="text_should_sound">Geluid</string>
+    <string name="text_start_at_boot">Automatisch opstarten bij het opstarten van het toestel</string>
     <string name="text_volume_level">Volumeniveau</string>
     <string name="text_version">Versie</string>
     <string name="text_developed_by">Ontwikkeld door</string>
