@@ -54,8 +54,8 @@ fun SettingsScreen(
     val scrollState = rememberScrollState()
     val context = LocalContext.current
     var showThemeDialog by remember { mutableStateOf(false) }
-    var batteryThreshold by remember { mutableFloatStateOf(state.batteryThreshold.toFloat()) }
-    var volumeLevel by remember { mutableFloatStateOf(state.volumeLevel.toFloat()) }
+    var batteryThreshold by remember(state) { mutableFloatStateOf(state.batteryThreshold.toFloat()) }
+    var volumeLevel by remember(state) { mutableFloatStateOf(state.volumeLevel.toFloat()) }
 
     Scaffold(
         topBar = {
