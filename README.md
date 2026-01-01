@@ -22,5 +22,5 @@ the alarm by unplugging their device.
 ## Links 🔗
 
 <a href="https://github.com/jagadeesh-k-2802/battery-alarm-android/releases/latest" target="_blank">
-    <img alt="Get it on GitHub" src="https://github.com/jagadeesh-k-2802/battery-alarm-android/assets/63912668/89e3aecd-fe2a-4b08-8dca-18808a4abe9f" height="80">
+    <img alt="Get it on GitHub" src="https://github.com/jagadeesh-k-2802/battery-alarm-android/assets/63912668/89e3aecd-fe2a-4b08-8dca-18808a4abe9f" height="100" width="225">
 </a>
