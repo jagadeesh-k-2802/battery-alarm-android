@@ -9,13 +9,9 @@ android {
     namespace 'com.jackapps.batteryalarm'
     compileSdk 35
 
-    signingConfigs {
-        releaseTest {
-            storeFile file('release-test.jks')
-            storePassword '123456'
-            keyAlias 'key0'
-            keyPassword '123456'
-        }
+    dependenciesInfo {
+        includeInApk false
+        includeInBundle false
     }
 
     defaultConfig {
@@ -34,7 +30,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            signingConfig signingConfigs.releaseTest
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

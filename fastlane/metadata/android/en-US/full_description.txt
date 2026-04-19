@@ -1,0 +1,7 @@
+Battery Alarm is a simple app that monitors your battery level and notifies you when it reaches a specific threshold. 
+
+Features:
+- Set custom battery threshold
+- Sound and vibration alerts
+- Start at boot option
+- Simple and clean UI
